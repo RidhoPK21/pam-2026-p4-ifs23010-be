@@ -1,6 +1,6 @@
 ## Global Variabel
-@BaseUrl = https://pam-2026-p4-ifs23010-be.delcom.org:8080
-#@BaseUrl = http://127.0.0.1:8000
+#@BaseUrl = https://pam-2026-p4-ifs23010-be.delcom.org:8080
+@BaseUrl = https://pam-2026-p4-ifs23010-be.ifs23010.fun:8080
 
 ## Profile
 ## ===========================================
@@ -28,6 +28,7 @@ Content-Type: application/json
 #    client.global.set("plantId", response.body.data.plants[0].id);
 #    console.log(client.global.get("plantId"))
 #%}
+
 
 ### Menambahkan data tumbuhan baru
 # @name PostPlants

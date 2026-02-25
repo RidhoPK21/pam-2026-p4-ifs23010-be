@@ -13,8 +13,8 @@ class ProfileService {
             "success",
             "Berhasil mengambil profile pengembang",
             mapOf(
-                Pair("username", "abdullah.ubaid"),
-                Pair("nama", "Abdullah Ubaid"),
+                Pair("username", "xander.pakpahan"),
+                Pair("nama", "Ridho Alexander Pakpahan"),
                 Pair("tentang", "Saya adalah seorang developer yang tertarik pada mobile development, backend API, dan berbagai teknologi pengembangan aplikasi. Senang belajar hal baru dan membangun aplikasi yang berguna."),
             )
         )

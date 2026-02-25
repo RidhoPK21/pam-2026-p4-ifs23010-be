@@ -9,11 +9,13 @@ import org.delcom.data.AppException
 import org.delcom.data.ErrorResponse
 import org.delcom.helpers.parseMessageToMap
 import org.delcom.services.PlantService
+import org.delcom.services.NovelService
 import org.delcom.services.ProfileService
 import org.koin.ktor.ext.inject
 
 fun Application.configureRouting() {
     val plantService: PlantService by inject()
+    val novelService: NovelService by inject()
     val profileService: ProfileService by inject()
 
     install(StatusPages) {
@@ -46,7 +48,7 @@ fun Application.configureRouting() {
 
     routing {
         get("/") {
-            call.respondText("API telah berjalan. Dibuat oleh Abdullah Ubaid.")
+            call.respondText("API telah berjalan. Dibuat oleh Ridho Alexander Pakpahan.")
         }
 
         // Route Plants
@@ -69,6 +71,28 @@ fun Application.configureRouting() {
 
             get("/{id}/image") {
                 plantService.getPlantImage(call)
+            }
+        }
+
+        route("/novels") {
+            get {
+                novelService.getAllNovels(call)
+            }
+            post {
+                novelService.createNovel(call)
+            }
+            get("/{id}") {
+                novelService.getNovelById(call)
+            }
+            put("/{id}") {
+                novelService.updateNovel(call)
+            }
+            delete("/{id}") {
+                novelService.deleteNovel(call)
+            }
+
+            get("/{id}/image") {
+                novelService.getNovelImage(call)
             }
         }
 

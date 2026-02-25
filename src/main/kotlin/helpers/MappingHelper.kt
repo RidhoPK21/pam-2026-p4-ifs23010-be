@@ -3,6 +3,8 @@ package org.delcom.helpers
 import kotlinx.coroutines.Dispatchers
 import org.delcom.dao.PlantDAO
 import org.delcom.entities.Plant
+import org.delcom.dao.NovelDAO
+import org.delcom.entities.Novel
 import org.jetbrains.exposed.sql.Transaction
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 
@@ -16,6 +18,18 @@ fun daoToModel(dao: PlantDAO) = Plant(
     dao.deskripsi,
     dao.manfaat,
     dao.efekSamping,
+    dao.createdAt,
+    dao.updatedAt
+)
+
+fun daoToModel(dao: NovelDAO) = Novel(
+    dao.id.value.toString(),
+    dao.nama,
+    dao.pathGambar,
+    dao.deskripsi,
+    dao.genre,
+    dao.karakterUtama,
+    dao.penulis,
     dao.createdAt,
     dao.updatedAt
 )
