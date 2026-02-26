@@ -2,6 +2,8 @@
 #@BaseUrl = https://pam-2026-p4-ifs23010-be.delcom.org:8080
 @BaseUrl = https://pam-2026-p4-ifs23010-be.ifs23010.fun:8080
 
+
+
 ## Profile
 ## ===========================================
 
@@ -24,10 +26,12 @@ Content-Type: application/json
 GET {{BaseUrl}}/plants?search=
 Content-Type: application/json
 
+
 #> {%
 #    client.global.set("plantId", response.body.data.plants[0].id);
 #    console.log(client.global.get("plantId"))
 #%}
+
 
 
 ### Menambahkan data tumbuhan baru
@@ -128,3 +132,127 @@ Content-Type: image/png
 # @name DeletePlant
 DELETE {{BaseUrl}}/plants/{{plantId}}
 Content-Type: application/json
+
+## Novels
+## ===========================================
+
+### Mengambil semua data novel
+# @name GetAllNovels
+GET {{BaseUrl}}/novels?search=
+Accept: application/json
+
+#> {%
+#    client.global.set("novelId", response.body.data.novels[0].id);
+#    console.log(client.global.get("novelId"))
+#%}
+
+### Menambahkan data novel baru
+# @name PostNovel
+POST {{BaseUrl}}/novels
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Bumi
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Bumi adalah sebuah novel fiksi ilmiah fantasi yang menceritakan petualangan remaja di dunia paralel.
+--WebAppBoundary
+Content-Disposition: form-data; name="genre"
+
+Fiksi Ilmiah, Fantasi
+--WebAppBoundary
+Content-Disposition: form-data; name="karakterUtama"
+
+Raib, Seli, dan Ali
+--WebAppBoundary
+Content-Disposition: form-data; name="penulis"
+
+Tere Liye
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    client.global.set("novelId", response.body.data.novelId);
+    console.log(client.global.get("novelId"));
+%}
+
+### Mengambil data novel berdasarkan id-nya
+# @name GetNovelById
+GET {{BaseUrl}}/novels/{{novelId}}
+Accept: application/json
+
+### Melihat gambar novel
+# @name GetNovelImageById
+GET {{BaseUrl}}/novels/{{novelId}}/image
+Accept: application/json
+
+### Mengubah hanya data novel berdasarkan id-nya
+# @name PutNovelOnlyData
+PUT {{BaseUrl}}/novels/{{novelId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Bumi (Edisi Revisi)
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Bumi adalah sebuah novel fiksi ilmiah fantasi yang menceritakan petualangan remaja di dunia paralel.
+--WebAppBoundary
+Content-Disposition: form-data; name="genre"
+
+Fiksi Ilmiah, Fantasi
+--WebAppBoundary
+Content-Disposition: form-data; name="karakterUtama"
+
+Raib, Seli, dan Ali
+--WebAppBoundary
+Content-Disposition: form-data; name="penulis"
+
+Tere Liye
+--WebAppBoundary--
+
+### Mengubah gambar dan data novel berdasarkan id-nya
+# @name PutNovel
+PUT {{BaseUrl}}/novels/{{novelId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Bumi (Edisi Kolektor)
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Bumi adalah sebuah novel fiksi ilmiah fantasi yang menceritakan petualangan remaja di dunia paralel.
+--WebAppBoundary
+Content-Disposition: form-data; name="genre"
+
+Fiksi Ilmiah, Fantasi
+--WebAppBoundary
+Content-Disposition: form-data; name="karakterUtama"
+
+Raib, Seli, dan Ali
+--WebAppBoundary
+Content-Disposition: form-data; name="penulis"
+
+Tere Liye
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+### Menghapus data novel berdasarkan id-nya
+# @name DeleteNovel
+DELETE {{BaseUrl}}/novels/{{novelId}}
+Accept: application/json
